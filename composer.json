@@ -1,0 +1,44 @@
+{
+  "name": "wufly/logstash",
+  "description": "Log formatting to facilitate logstash collection",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "logstash",
+    "log",
+    "ELK",
+    "日志收集"
+  ],
+  "authors": [
+    {
+      "name": "wufly",
+      "email": "wfxykzd@163.com"
+    }
+  ],
+  "require": {
+    "php": "^7.1",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "laravel/framework": "^6.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Wufly\\Dingding\\DingdingServiceProvider"
+      ]
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Wufly\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Test\\Wufly\\": "tests/"
+    }
+  }
+}
