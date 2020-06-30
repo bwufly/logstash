@@ -25,7 +25,7 @@ class LogstashServiceProvider extends ServiceProvider
     {
         //publish
         $this->publishes([
-            __DIR__ . '/config/logstash.php' => config_path('logstash.php'),
+            __DIR__ . '/../config/logstash.php' => config_path('logstash.php'),
         ]);
     }
 }
