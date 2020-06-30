@@ -27,7 +27,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Wufly\\Dingding\\DingdingServiceProvider"
+        "Wufly\\Provider\\LogstashServiceProvider"
       ]
     }
   },
