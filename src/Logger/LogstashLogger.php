@@ -61,12 +61,12 @@ class LogstashLogger implements LoggerInterface
     {
         if (!$this->context) {
             $uuid = Uuid::uuid4()->toString();
-            // $user_id = auth()->id();
+            $user_id = auth()->id();
             $context = [
-                // 'path'       => request()->getRequestUri(),
-                // 'param'      => json_encode(request()->except(['token', 'password'])),
+                'path'       => request()->getRequestUri(),
+                'param'      => json_encode(request()->except(['token', 'password'])),
                 'request_id' => $uuid,
-                // 'user_id'    => $user_id,
+                'user_id'    => $user_id,
             ];
             $this->context = array_merge($this->context, $context);
         }
