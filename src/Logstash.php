@@ -22,7 +22,7 @@ class Logstash
         if (!self::$logger) {
             self::$logger = new LogstashLogger();
         }
-        return (self::$logger)->$funcName($args);
+        return (self::$logger)->$funcName(...$args);
     }
 
     /**
