@@ -43,5 +43,6 @@ return [
     /**
      * logstash log path
      */
-    'logstash_log_path'   => env('LOGSTASH_LOG_PATH', $app->storagePath() . '/logs/logstash.log')
+    'logstash_log_path'   => env('LOGSTASH_LOG_PATH', $app->storagePath() . '/logs/logstash.log'),
+    'logstash_days'       => env('LOGSTASH_DAYS', 14),
 ];

@@ -22,11 +22,11 @@ class LogstashService
     public function __invoke(array $config): LoggerInterface
     {
         $handler = new RotatingFileHandler(
-            config('logstash.channels')[config('logstash.default')]['path'],
-            config('logstash.channels')[config('logstash.default')]['days'] ?? 14,
+            config('logstash.logstash_log_path'),
+            config('logstash.logstash_days') ?? 14,
             Logger::DEBUG,
             true,
-            config('logstash.channels')[config('logstash.default')]['permission'] ?? '644'
+            config('logstash.log_file_permission', null)
         );
         $appName = config('app.name');
         $handler->setFormatter(new LogstashFormatter($appName));
