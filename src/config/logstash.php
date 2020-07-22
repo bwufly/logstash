@@ -38,7 +38,7 @@ return [
     /**
      * log permission
      */
-    'log_file_permission' => env('LOG_FILE_PERMISSION', 644),
+    'log_file_permission' => env('LOG_FILE_PERMISSION'),
 
     /**
      * logstash log path
