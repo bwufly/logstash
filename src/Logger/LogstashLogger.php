@@ -44,10 +44,10 @@ class LogstashLogger implements LoggerInterface
             config('logstash.log_max_files'),
             Logger::DEBUG,
             true,
-            octdec(config('logstash.log_file_permission'))
+            config('logstash.log_file_permission')
         );
         $handler->setFormatter(new LogstashFormatter($appName));
-        $writer = new Logger($channel, [$handler]);
+        $writer = new Logger($channel ?: $appName, [$handler]);
         $this->writer = $writer;
         $this->setContext();
     }
