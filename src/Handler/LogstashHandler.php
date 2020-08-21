@@ -20,27 +20,14 @@ class LogstashHandler extends Handler
 {
     public function report(Exception $e)
     {
-        if ($this->shouldntReport($e)) {
-            return;
-        }
-
-        if (is_callable($reportCallable = [$e, 'report'])) {
-            return $this->container->call($reportCallable);
-        }
+        parent::report($e);
 
         Logstash::channel('handler')->error(
             $e->getMessage(),
             array_merge(
                 $this->exceptionContext($e),
                 $this->context(),
-                ['exception' => $e],
-                [
-                    'path'        => request()->getRequestUri(),
-                    'param'       => json_encode(request()->except(['token', 'password'])),
-                    'request_id'  => Uuid::uuid4()->toString(),
-                    'user_id'     => auth()->id(),
-                    'system_name' => config('app.name'), // 系统名称
-                ]
+                ['exception' => $e]
             )
         );
     }
