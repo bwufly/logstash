@@ -13,6 +13,7 @@ namespace Wufly\Handler;
 
 use Illuminate\Foundation\Exceptions\Handler;
 use Exception;
+use Ramsey\Uuid\Uuid;
 use Wufly\Logstash;
 
 class LogstashHandler extends Handler
@@ -27,12 +28,19 @@ class LogstashHandler extends Handler
             return $this->container->call($reportCallable);
         }
 
-        Logstash::error(
+        Logstash::channel('handler')->error(
             $e->getMessage(),
             array_merge(
                 $this->exceptionContext($e),
                 $this->context(),
-                ['exception' => $e]
+                ['exception' => $e],
+                [
+                    'path'        => request()->getRequestUri(),
+                    'param'       => json_encode(request()->except(['token', 'password'])),
+                    'request_id'  => Uuid::uuid4()->toString(),
+                    'user_id'     => auth()->id(),
+                    'system_name' => config('app.name'), // 系统名称
+                ]
             )
         );
     }

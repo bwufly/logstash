@@ -63,10 +63,11 @@ class LogstashLogger implements LoggerInterface
             $uuid = Uuid::uuid4()->toString();
             $user_id = auth()->id();
             $context = [
-                'path'       => request()->getRequestUri(),
-                'param'      => json_encode(request()->except(['token', 'password'])),
-                'request_id' => $uuid,
-                'user_id'    => $user_id,
+                'path'        => request()->getRequestUri(),
+                'param'       => json_encode(request()->except(['token', 'password'])),
+                'request_id'  => $uuid,
+                'user_id'     => $user_id,
+                'system_name' => config('app.name'), // 系统名称
             ];
             $this->context = array_merge($this->context, $context);
         }
