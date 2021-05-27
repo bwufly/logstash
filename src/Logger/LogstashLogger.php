@@ -60,12 +60,15 @@ class LogstashLogger implements LoggerInterface
     public function setContext()
     {
         if (!$this->context) {
-            $uuid = Uuid::uuid4()->toString();
+            $requestId = request()->server->get(config('logstash.request_id_name'));
+            if (!$requestId) {
+                $requestId = Uuid::uuid4()->toString();
+            }
             $user_id = auth()->id();
             $context = [
                 'path'        => request()->getRequestUri(),
                 'param'       => json_encode(request()->except(['token', 'password'])),
-                'request_id'  => $uuid,
+                'request_id'  => $requestId,
                 'user_id'     => $user_id,
                 'system_name' => config('app.name'), // 系统名称
             ];
