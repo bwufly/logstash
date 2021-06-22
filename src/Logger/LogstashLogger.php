@@ -84,46 +84,55 @@ class LogstashLogger implements LoggerInterface
 
     public function emergency($message, array $context = [])
     {
+        $this->context = array_merge($this->context, $context);
         $this->writer->emergency($message, $this->context);
     }
 
     public function alert($message, array $context = [])
     {
+        $this->context = array_merge($this->context, $context);
         $this->writer->alert($message, $this->context);
     }
 
     public function critical($message, array $context = array())
     {
+        $this->context = array_merge($this->context, $context);
         $this->writer->emergency($message, $this->context);
     }
 
     public function error($message, array $context = array())
     {
+        $this->context = array_merge($this->context, $context);
         $this->writer->error($message, $this->context);
     }
 
     public function warning($message, array $context = array())
     {
+        $this->context = array_merge($this->context, $context);
         $this->writer->warning($message, $this->context);
     }
 
     public function notice($message, array $context = array())
     {
+        $this->context = array_merge($this->context, $context);
         $this->writer->notice($message, $this->context);
     }
 
     public function info($message, array $context = array())
     {
+        $this->context = array_merge($this->context, $context);
         $this->writer->info($message, $this->context);
     }
 
     public function debug($message, array $context = array())
     {
+        $this->context = array_merge($this->context, $context);
         $this->writer->debug($message, $this->context);
     }
 
     public function log($level, $message, array $context = array())
     {
+        $this->context = array_merge($this->context, $context);
         $this->writer->log($level, $message, $this->context);
     }
 
