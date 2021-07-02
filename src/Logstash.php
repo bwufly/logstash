@@ -32,9 +32,9 @@ class Logstash
      */
     public static function channel($channel)
     {
-        if (!self::$logger) {
+//        if (!self::$logger) {
             self::$logger = new LogstashLogger($channel);
-        }
+//        }
         return self::$logger;
     }
 
